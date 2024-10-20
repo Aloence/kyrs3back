@@ -1,0 +1,41 @@
+-- Создание таблицы Stops
+CREATE TABLE Stops (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    stop_name VARCHAR(100) NOT NULL
+    -- adress?
+);
+
+-- Создание таблицы Routes
+CREATE TABLE Routes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    -- name?
+);
+
+-- Создание таблицы RouteStops для связи маршрутов и остановок
+CREATE TABLE RouteStops (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    route_id INT,
+    stop_id INT,
+    order INT,
+    PRIMARY KEY (route_id, stop_id),
+    FOREIGN KEY (route_id) REFERENCES Routes(route_id),
+    FOREIGN KEY (stop_id) REFERENCES Stops(stop_id)
+);
+
+-- Создание таблицы Schedule для хранения расписаний
+CREATE TABLE Schedule (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    route_id INT,
+    FOREIGN KEY (route_id) REFERENCES Routes(route_id)
+);
+
+-- Создание таблицы ScheduleTimes для хранения времени остановок
+CREATE TABLE ScheduleTimes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    stop_id VARCHAR(50),
+    time TIME NOT NULL,
+    PRIMARY KEY (schedule_id, stop_id),
+    FOREIGN KEY (schedule_id) REFERENCES Schedule(schedule_id),
+    FOREIGN KEY (stop_id) REFERENCES Stops(stop_id)
+);
+реализуй используя SQLAlchemy, также создай необходимые repositories,используй sqlalchemy-crudapi создавай отдельный файлы, когда требуется
