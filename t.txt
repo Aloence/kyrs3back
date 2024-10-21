@@ -24,3 +24,20 @@ model_dump() и потом **
 маршруту надо имя/номер добавить 
 при login reg проверку на уникальность 
 
+
+
+есть тип graphql@strawberry.type
+class BusType:
+    id: int
+    name: str
+и есть модель Автобуса : 
+class Bus(Base):
+    __tablename__ = 'buses'
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    schedule_id = Column(Integer, ForeignKey('schedules.id'))
+
+    schedule = relationship("Schedule", back_populates="buses")
+
+BusType передается в сервис, который потом передает его в метод репозитория для сохранения автобуса, где 
