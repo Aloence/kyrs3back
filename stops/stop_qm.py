@@ -11,21 +11,29 @@ stop_service = StopService()
 @strawberry.type
 class StopMutation:
     @strawberry.mutation
-    def create_stop(self, name: str) -> StopType:
-        new_stop = stop_service.create_stop(name)
+    def create_stop(self, stop_input:StopInput) -> StopType:
+        new_stop = stop_service.create_stop(stop_input)
         return new_stop
-
+    
+    @strawberry.mutation
+    def edit_stop(self, stop_id:int, stop_input:StopInput)->StopType:
+        edited_stop = stop_service.edit_stop(stop_id,stop_input)
+        return edited_stop
+    # def delete_stop(self,stop_id:int)-> bool:
+    #     stoo_deleted = stop_service.delete_stop(stop_id)
+    #     return stoo_deleted
 
 @strawberry.type
 class StopQuery:
     @strawberry.field
-    def all_stops(self) -> List[StopType]:
+    def get_stops(self) -> List[StopType]:
+        print('da')
         stops = stop_service.get_all_stops()
         return stops
 
     
     @strawberry.field
-    def stop_by_id(self, stop_id: int) -> Optional[StopType]:
+    def get_stop_by_id(self, stop_id: int) -> Optional[StopType]:
         stop = stop_service.get_stop(stop_id)
         return stop
     

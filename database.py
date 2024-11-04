@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker,declarative_base
 
 # Замените эти значения на ваши данные для подключения к PostgreSQL
-DATABASE_URL = f"postgresql://postgres:root@localhost/test3"
+DATABASE_URL = f"postgresql://postgres:root@localhost/test4"
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

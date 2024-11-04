@@ -11,22 +11,23 @@ bus_service = BusService()
 @strawberry.type
 class BusMutation:
     @strawberry.mutation
-    def create_bus(self, name: str, schedule_id:int) -> BusType:
-        new_bus = bus_service.create_bus(name, schedule_id)
+    def create_bus(self, bus_input:BusInput) -> BusType:
+        new_bus = bus_service.create_bus(bus_input)
         return new_bus
 
 
 @strawberry.type
 class BusQuery:
     @strawberry.field
-    def all_buses(self) -> List[BusType]:
+    def get_buses(self) -> List[BusType]:
         buses = bus_service.get_all_buses()
         return buses
 
     
     @strawberry.field
-    def bus_by_id(self, bus_id: int) -> Optional[BusType]:
+    def get_bus_by_id(self, bus_id: int) -> Optional[BusType]:
         bus = bus_service.get_bus(bus_id)
+        print(bus)
         return bus
     
 

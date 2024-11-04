@@ -26,3 +26,14 @@ class StopRepository:
         stop = db.query(Stop).filter(Stop.id == id).one()
         db.close()
         return stop
+    
+    def edit_stop(self, id: int, name: str) -> Stop:
+        db = SessionLocal()
+        stop = db.query(Stop).filter(Stop.id == id).one()
+
+        stop.name = name 
+        db.commit()
+        db.refresh(stop) 
+        db.close()
+        return stop
+        

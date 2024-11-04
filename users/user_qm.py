@@ -1,6 +1,6 @@
 import strawberry
 from typing import List,Optional
-from models import User, Route, RouteUser
+from models import User, Route
 from database import SessionLocal
 from sqlalchemy.orm import Session,joinedload
 from users.user_service import UserService

@@ -2,6 +2,8 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from database import Base
 
+
+#TODO route(name), sch(name,start,end)
 class Stop(Base):
     __tablename__ = 'stops'
 
@@ -18,8 +20,11 @@ class Route(Base):
     __tablename__ = 'routes'
 
     id = Column(Integer, primary_key=True, index=True)
-    stops = relationship("RouteStop", back_populates="route", cascade="all, delete-orphan")
+    name = Column(String)
 
+    stops = relationship("RouteStop", back_populates="route", cascade="all, delete-orphan")
+    schedules = relationship("Schedule", back_populates="route", cascade="all, delete-orphan")
+    
     def __str__(self):
         s = str(self.id)
         [print(stop) for stop in self.stops]
@@ -45,6 +50,11 @@ class Schedule(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     route_id = Column(Integer, ForeignKey('routes.id'))
+    name = Column(String)
+    start = Column(String)
+    end = Column(String)
+    
+    route = relationship("Route", back_populates="schedules") 
     schedule_stops = relationship("ScheduleStop", back_populates="schedule", cascade="all, delete-orphan")
     buses = relationship("Bus", back_populates="schedule", cascade="all, delete-orphan")
 

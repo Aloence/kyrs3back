@@ -12,20 +12,20 @@ route_service = RouteService()
 @strawberry.type
 class RouteMutation:
     @strawberry.mutation
-    def create_route(self, stops: List[StopInput]) -> RouteType:
-        route = route_service.create_route(stops)
+    def create_route(self, route_input:RouteInput) -> RouteType:
+        route = route_service.create_route(route_input)
         return route
 
     
 @strawberry.type
 class RouteQuery:
     @strawberry.field
-    def all_routes(self) -> List[RouteType]:
+    def get_routes(self) -> List[RouteType]:
         routes = route_service.get_all_routes()
         return routes
 
     @strawberry.field
-    def route_by_id(self, route_id: int) -> Optional[RouteType]:
+    def get_route_by_id(self, route_id: int) -> Optional[RouteType]:
         route = route_service.get_route(route_id)
         return route
 

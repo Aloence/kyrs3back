@@ -1,21 +1,30 @@
 import strawberry
 from typing import List
-from models import Stop, Route, RouteStop
 from database import SessionLocal
 from sqlalchemy.orm import Session,joinedload
 from stops.stop_qm import StopMutation,StopQuery
 from routes.route_qm import RouteMutation,RouteQuery
 from schedules.schedule_qm import ScheduleMutation, ScheduleQuery
 from buses.bus_qm import BusMutation, BusQuery
-from users.user_qm import UserMutation, UserQuery
+# from users.user_qm import UserMutation, UserQuery
 
 
+
+queries =[StopQuery,RouteQuery,ScheduleQuery,BusQuery]
+mutations =[StopMutation,RouteMutation,ScheduleMutation,BusMutation]
+num = 3
+# @strawberry.type
+# class Mutation(mutations[num]):
+#     pass
+# @strawberry.type
+# class Query(queries[num]):
+#     pass
+
 @strawberry.type
-class Mutation(UserMutation):
+class Mutation(StopMutation,RouteMutation,ScheduleMutation,BusMutation):
     pass
 @strawberry.type
-class Query(UserQuery):
+class Query(StopQuery,RouteQuery,ScheduleQuery,BusQuery):
     pass
-    
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)

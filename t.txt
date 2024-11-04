@@ -17,27 +17,13 @@ sqlalchemy использует lazy loading т е к примеру если м
 когда сессии открывать с бд щас будут в репозитории в самих методах
 где преобразовывыть ORM объекты в типы для GraphQL 
 model_dump() и потом **
-надо ли преобразовывать StopInput в стоп перед записмью в бд
 сортировка по ордеру в маршруте реализована в __get_route_stops
 еще там вопросы есть в routeService которые ко всем относятся
 методы там попереименовыввать там где то routebuid потом просто getroute и тд
 маршруту надо имя/номер добавить 
 при login reg проверку на уникальность 
 
+нужно ли возвращать созданный объект? и надо еще InputTypes поправить
 
-
-есть тип graphql@strawberry.type
-class BusType:
-    id: int
-    name: str
-и есть модель Автобуса : 
-class Bus(Base):
-    __tablename__ = 'buses'
-
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
-    schedule_id = Column(Integer, ForeignKey('schedules.id'))
-
-    schedule = relationship("Schedule", back_populates="buses")
-
-BusType передается в сервис, который потом передает его в метод репозитория для сохранения автобуса, где 
+на фронте везде где есть getByID там херня потому что нельзя проверить точно есть ли элемент 
+можно везде использовать toJson на фронте 
