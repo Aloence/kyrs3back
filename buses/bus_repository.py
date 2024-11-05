@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session,joinedload
+from sqlalchemy.orm import joinedload
 from typing import List
 from models import Bus,Schedule,Route,ScheduleStop,RouteStop
 from database import SessionLocal
@@ -7,11 +7,9 @@ class BusRepository:
 
     def create_bus(self, bus:Bus):
         db = SessionLocal()
-        
-        # new_bus = Bus(pricname=name,schedule_id=schedule_id)
         db.add(bus)
         db.commit()
-        db.refresh(bus)  # Получаем обновленные данные о новой остановке
+        db.refresh(bus) 
         db.close()
         
         return bus

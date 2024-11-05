@@ -1,7 +1,8 @@
-from sqlalchemy.orm import Session,joinedload
+from sqlalchemy.orm import joinedload
+from sqlalchemy import select
 from database import SessionLocal
 from typing import List
-from models import Stop, Route, RouteStop
+from models import  Route, RouteStop
 
 class RouteRepository:
     def create_route(self, route:Route)->Route:

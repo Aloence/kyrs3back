@@ -1,12 +1,9 @@
 import strawberry
 from typing import List,Optional
-from models import Stop, Route, RouteStop
-from database import SessionLocal
-from sqlalchemy.orm import Session,joinedload
 from routes.route_service import RouteService
-from routes.types import *
+from graph_types import RouteInput,RouteType
 
-#kost
+#kost DI init ?
 route_service = RouteService()
 
 @strawberry.type

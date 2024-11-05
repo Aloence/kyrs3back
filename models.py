@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from database import Base
 
 
-#TODO route(name), sch(name,start,end)
 class Stop(Base):
     __tablename__ = 'stops'
 

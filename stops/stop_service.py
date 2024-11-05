@@ -1,6 +1,6 @@
 from stops.stop_repository import StopRepository
 from typing import List
-from stops.types import *
+from graph_types import StopType
 
 
 class StopService():

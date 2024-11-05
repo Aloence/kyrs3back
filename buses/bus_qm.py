@@ -1,12 +1,9 @@
 import strawberry
 from typing import List,Optional
-from models import  Route, Bus
-from database import SessionLocal
-from sqlalchemy.orm import Session,joinedload
 from buses.bus_service import BusService
-from buses.types import *
+from graph_types import BusInput,BusType
 
-
+#kost DI init ?
 bus_service = BusService()
 @strawberry.type
 class BusMutation:
@@ -27,7 +24,7 @@ class BusQuery:
     @strawberry.field
     def get_bus_by_id(self, bus_id: int) -> Optional[BusType]:
         bus = bus_service.get_bus(bus_id)
-        print(bus)
+        # print(bus)
         return bus
     
 

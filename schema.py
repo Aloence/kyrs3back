@@ -1,12 +1,9 @@
 import strawberry
-from typing import List
-from database import SessionLocal
-from sqlalchemy.orm import Session,joinedload
 from stops.stop_qm import StopMutation,StopQuery
 from routes.route_qm import RouteMutation,RouteQuery
 from schedules.schedule_qm import ScheduleMutation, ScheduleQuery
 from buses.bus_qm import BusMutation, BusQuery
-# from users.user_qm import UserMutation, UserQuery
+
 
 
 

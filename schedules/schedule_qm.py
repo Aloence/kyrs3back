@@ -1,9 +1,6 @@
 import strawberry
 from typing import List,Optional
-from models import Stop, Route, RouteStop
-from database import SessionLocal
-from sqlalchemy.orm import Session,joinedload
-from schedules.types import *
+from graph_types import ScheduleInput,ScheduleType
 from schedules.schedule_service import ScheduleService
 
 

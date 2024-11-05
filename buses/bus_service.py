@@ -1,7 +1,7 @@
 from buses.bus_repository import BusRepository
 from typing import List
-from models import *
-from buses.types import *
+from models import Bus
+from graph_types import BusInput,BusType,RouteType,ScheduleType,ScheduleStopType
 
 class BusService():
 
@@ -58,7 +58,7 @@ class BusService():
                 )
             for schedule_stop in bus.schedule.schedule_stops],
         )
-        [print(schedule_stop.stop) for schedule_stop in bus.schedule.schedule_stops]
+        # [print(schedule_stop.stop) for schedule_stop in bus.schedule.schedule_stops]
         
         return BusType(
             id=bus.id,

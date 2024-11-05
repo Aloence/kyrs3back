@@ -1,7 +1,7 @@
 from routes.route_repository import RouteRepository
 from typing import List,Optional
 from models import Route,RouteStop
-from routes.types import *
+from graph_types import RouteInput,RouteType,StopType
 class RouteService():
 
     def __init__(self):

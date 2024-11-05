@@ -1,18 +1,13 @@
-from sqlalchemy.orm import Session,joinedload
+from sqlalchemy.orm import joinedload
 from database import SessionLocal
 from typing import List, Optional
-from models import Stop, Route, RouteStop, Schedule, ScheduleStop
+from models import  Route, RouteStop, Schedule, ScheduleStop
 
 class ScheduleRepository:
     def create_schedule(self, schedule)->Schedule:
         db = SessionLocal()
         db.add(schedule)
-        # db.flush()  # Чтобы получить ID маршрута
-        # for order, sch_stop in enumerate(schedule_stops):
-        #     schedule_stop = ScheduleStop(schedule_id=schedule.id,stop_id=sch_stop.id,time=sch_stop.time,order=order)
-        #     # schedule.schedule_stops.append(schedule_stop)
-        #     db.add(schedule_stop)
-
+        
         db.commit()
         db.refresh(schedule)
         db.close()

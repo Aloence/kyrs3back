@@ -1,12 +1,9 @@
 import strawberry
 from typing import List,Optional
-from models import Stop, Route, RouteStop
-from database import SessionLocal
-from sqlalchemy.orm import Session,joinedload
 from stops.stop_service import StopService
-from stops.types import *
+from graph_types import StopInput,StopType
 
-
+#kost DI init ?
 stop_service = StopService()
 @strawberry.type
 class StopMutation:
@@ -27,7 +24,6 @@ class StopMutation:
 class StopQuery:
     @strawberry.field
     def get_stops(self) -> List[StopType]:
-        print('da')
         stops = stop_service.get_all_stops()
         return stops
 

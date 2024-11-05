@@ -1,7 +1,7 @@
 from schedules.schedule_repository import ScheduleRepository
 from typing import List,Optional
-from models import *
-from schedules.types import *
+from models import Schedule,ScheduleStop
+from graph_types import ScheduleType,ScheduleInput,RouteType,ScheduleStopType
 
 class ScheduleService():
 
@@ -22,7 +22,6 @@ class ScheduleService():
         )
 
     
-    #надо сделать чтобы остановки в нужном порядке возвращались
     def get_schedule(self,id:int) -> Optional[ScheduleType]:
         schedule = self.repository.get_schedule(id)
         if schedule:

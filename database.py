@@ -1,8 +1,7 @@
 from sqlalchemy import create_engine
-# from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker,declarative_base
 
-# Замените эти значения на ваши данные для подключения к PostgreSQL
+# .env utils
 DATABASE_URL = f"postgresql://postgres:root@localhost/test4"
 
 engine = create_engine(DATABASE_URL)
